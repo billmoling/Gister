@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GisterSpecs", "GisterSpecs\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gister", "Gister\Gister.csproj", "{901DD725-8340-46CE-BA3A-0CB7A2FB715B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GistTextAdornment", "GistTextAdornment\GistTextAdornment.csproj", "{8D8C0249-BB33-4CF8-AB54-3C5C1153473B}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Gister.vsmdi
@@ -30,6 +32,10 @@ Global
 		{901DD725-8340-46CE-BA3A-0CB7A2FB715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{901DD725-8340-46CE-BA3A-0CB7A2FB715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{901DD725-8340-46CE-BA3A-0CB7A2FB715B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D8C0249-BB33-4CF8-AB54-3C5C1153473B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D8C0249-BB33-4CF8-AB54-3C5C1153473B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D8C0249-BB33-4CF8-AB54-3C5C1153473B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D8C0249-BB33-4CF8-AB54-3C5C1153473B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

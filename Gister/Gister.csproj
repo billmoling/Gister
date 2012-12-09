@@ -88,6 +88,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -165,6 +166,9 @@
     <Compile Include="Api\GitHubSender.cs" />
     <Compile Include="Api\HttpGitHubSender.cs" />
     <Compile Include="Api\NoWhereGitHubSender.cs" />
+    <Compile Include="GistSearchBox.xaml.cs">
+      <DependentUpon>GistSearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IDescriptionPrompt.cs" />
     <Compile Include="GitHubDescriptionPrompt.xaml.cs">
       <DependentUpon>GitHubDescriptionPrompt.xaml</DependentUpon>
@@ -234,6 +238,10 @@
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="GistSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GitHubCredentialsPrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
