@@ -57,7 +57,7 @@ namespace GistTextAdornment
         {
             if (line.Extent.GetText().ToLower().Contains("gist:"))
             {
-                var searchBox = new GistSearchBox();
+                var searchBox = new GistSearchBox(_view);
                 if (line.Extent.GetText().Length>4)
                 {
                     searchBox.TextBox1.Text = line.Extent.GetText().Trim().Split(':')[1];

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Editor;
-
+using Microsoft.VisualStudio.Text;
 
 namespace GistTextAdornment
 {
@@ -24,42 +24,27 @@ namespace GistTextAdornment
     /// </summary>
     public partial class GistSearchBox : UserControl
     {
-        public GistSearchBox()
+        IWpfTextView _view;
+        public GistSearchBox(IWpfTextView view)
         {
             InitializeComponent();
+            _view = view;
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        ITextSelection GetSelection(IWpfTextViewHost viewHost)
-        {
-            return viewHost.TextView.Selection;
-        }
-
-        IWpfTextViewHost GetCurrentViewHost()
-        {
-            
-            IVsTextManager txtMgr = (IVsTextManager)GetService(typeof(SVsTextManager));
-            IVsTextView vTextView = null;
-            int mustHaveFocus = 1;
-            txtMgr.GetActiveView(mustHaveFocus, null, out vTextView);
-            IVsUserData userData = vTextView as IVsUserData;
-            if (userData == null)
+            Dispatcher.Invoke(new Action(() =>
             {
-                return null;
-            }
-            else
-            {
-                IWpfTextViewHost viewHost;
-                object holder;
-                Guid guidViewHost = DefGuidList.guidIWpfTextViewHost;
-                userData.GetData(ref guidViewHost, out holder);
-                viewHost = (IWpfTextViewHost)holder;
-                return viewHost;
-            }
+
+                ITextEdit edit = _view.TextBuffer.CreateEdit();
+                ITextSnapshot snapshot = edit.Snapshot;
+                
+                int position = snapshot.GetText().IndexOf("gist:");
+                edit.Delete(position, 5);
+                edit.Insert(position, "billmo");
+                edit.Apply();
+            }));
+            
         }
     }
 }
