@@ -8,7 +8,7 @@ using Should.Fluent;
 namespace GisterSpecs
 {
 
-    public class MockGitHubSender : GitHubSender
+    public class MockGitHubSender : IGitHubSender
     {
         private string failureStatusDescription;
 

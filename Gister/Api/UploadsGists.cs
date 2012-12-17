@@ -37,7 +37,7 @@ namespace EchelonTouchInc.Gister.Api
             gitHubCredentials = credentials;
         }
 
-        public GitHubSender GitHubSender { get; set; }
+        public IGitHubSender GitHubSender { get; set; }
 
         public Action<string> Uploaded { get; set; }
 

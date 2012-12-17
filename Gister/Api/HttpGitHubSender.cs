@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EchelonTouchInc.Gister.Api
 {
-    public class HttpGitHubSender : GitHubSender
+    public class HttpGitHubSender : IGitHubSender
     {
 
         public string SendGist(string fileName, string content, string description, bool isPublic, GitHubCredentials credentials)
