@@ -42,5 +42,35 @@ namespace EchelonTouchInc.Gister.Api
 
             }
         }
+
+        public string GetGistById(string gistId, GitHubUserCredentials credentials)
+        {
+            using (var stream = new MemoryStream())
+            {
+                var request = new FluentHttpRequest()
+                .BaseUrl("https://api.github.com")
+                .ResourcePath(string.Format("/gists/{0}",gistId))
+                .Method("GET")
+                .Headers(h => h.Add("User-Agent", "Gister"))
+                .Headers(h => h.Add("Content-Type", "application/json"))
+                .OnResponseHeadersReceived((o, e) => e.SaveResponseIn(stream));
+
+                AppliesGitHubCredentialsToFluentHttpRequest.ApplyCredentials(credentials, request);
+
+                var response = request.Execute();
+
+                if (response.Response.HttpWebResponse.StatusCode != HttpStatusCode.OK)
+                    throw new GitHubUnauthorizedException(response.Response.HttpWebResponse.StatusDescription);
+
+                response.Response.SaveStream.Seek(0, SeekOrigin.Begin);
+
+                var rawGistJson = FluentHttpRequest.ToString(response.Response.SaveStream);
+
+                JObject rawGistJsonObj =JObject.Parse(rawGistJson);
+
+                return rawGistJsonObj.files;
+
+            }
+        }
     }
 }
