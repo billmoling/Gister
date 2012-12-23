@@ -160,6 +160,10 @@
     <Compile Include="Api\Credentials\CredentialVisitor.cs" />
     <Compile Include="Api\Credentials\GitHubCredentials.cs" />
     <Compile Include="Api\Credentials\GitHubUserCredentialsForFluentHttp.cs" />
+    <Compile Include="Api\GistObject.cs" />
+    <Compile Include="Api\HttpGitHubDownloader.cs" />
+    <Compile Include="Api\IGitHubReceiver.cs" />
+    <Compile Include="Api\ProcessGistList.cs" />
     <Compile Include="Api\UploadsGists.cs" />
     <Compile Include="Api\CleansGistContent.cs" />
     <Compile Include="Api\CreatesGistMessages.cs" />

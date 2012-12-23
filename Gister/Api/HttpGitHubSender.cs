@@ -47,6 +47,7 @@ namespace EchelonTouchInc.Gister.Api
 
             return (string)gist.html_url;
         }
+
     }
 
     [Serializable]
