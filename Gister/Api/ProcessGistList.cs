@@ -30,6 +30,16 @@ namespace EchelonTouchInc.Gister.Api
         }
 
 
+        public static string GetContentById(string Id,GitHubCredentials mycredentials)
+        {
+            
+            GitHubReceiver = new HttpGitHubDownloader();
+            string content = GitHubReceiver.GetGistById(Id, mycredentials);
+            //TODO:need to process this result to the real world code style
+            return content;
+        }
+
+
 
 
 

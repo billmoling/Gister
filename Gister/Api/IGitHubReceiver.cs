@@ -11,5 +11,6 @@ namespace EchelonTouchInc.Gister.Api
     public interface IGitHubReceiver
     {
         JArray ListGist(GitHubCredentials credentials);
+        string GetGistById(string gistId, GitHubCredentials credentials);
     }
 }

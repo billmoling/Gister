@@ -68,7 +68,21 @@ namespace EchelonTouchInc.Gister.Api
 
                 JObject rawGistJsonObj =JObject.Parse(rawGistJson);
 
-                return rawGistJsonObj.ToString();
+                //JArray rawGistJsonFiles=JArray.Parse(rawGistJsonObj
+
+                //TODO: the file name is different for each Gist, so need to find a way to get the file. Also need to deal with the multi files case.
+
+                if (rawGistJsonObj.Property("files").Value.Count() != 1)
+                {
+                    //TODO:multi files insert is not supported yet
+                    throw new NotImplementedException("multi files insert is not supported yet");
+                }
+
+                //TODO:need to deal with the result
+                dynamic rawFilesJson = rawGistJsonObj.Property("files").Value[0];
+
+                return rawFilesJson.content;
+
 
             }
         }
