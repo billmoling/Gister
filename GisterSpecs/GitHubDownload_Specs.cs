@@ -17,9 +17,10 @@ namespace GisterSpecs
         [Test]
         public void DownloadGistList()
         {
-            ProcessGistList obj = new ProcessGistList();
-            GitHubUserCredentials mycred=new GitHubUserCredentials ("XXXXX","XXXX");
-            obj.GetUserGistList(mycred);
+            throw new NotImplementedException("this test is for debugging only");
+            //ProcessGistList obj = new ProcessGistList();
+            //GitHubUserCredentials mycred=new GitHubUserCredentials ("XXXXX","XXXX");
+            //obj.GetUserGistList(mycred);
 
         }
     }

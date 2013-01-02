@@ -10,9 +10,9 @@ namespace EchelonTouchInc.Gister.Api
 {
     public class ProcessGistList
     {
-        public IGitHubReceiver GitHubReceiver { get; set; }
+        public static IGitHubReceiver GitHubReceiver { get; set; }
 
-        public List<GistObject> GetUserGistList(GitHubUserCredentials mycredentials)
+        public static List<GistObject> GetUserGistList(GitHubCredentials mycredentials)
         {
             GitHubReceiver = new HttpGitHubDownloader();
             JArray gistJsonArray = GitHubReceiver.ListGist(mycredentials);

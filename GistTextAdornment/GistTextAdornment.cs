@@ -60,7 +60,7 @@ namespace GistTextAdornment
                 var searchBox = new GistSearchBox(_view);
                 if (line.Extent.GetText().Length>4)
                 {
-                    searchBox.TextBox1.Text = line.Extent.GetText().Trim().Split(':')[1];
+                    searchBox.TextBox1.Text = line.Extent.GetText().Trim().Substring(5);
                 }
                 Canvas.SetTop(searchBox, line.TextTop);
                 Canvas.SetLeft(searchBox, line.TextRight);

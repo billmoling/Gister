@@ -13,7 +13,7 @@ namespace EchelonTouchInc.Gister.Api
 {
     public class HttpGitHubDownloader:IGitHubReceiver
     {
-        public JArray ListGist(GitHubUserCredentials credentials)
+        public JArray ListGist(GitHubCredentials credentials)
         {
             using (var stream =new MemoryStream())
             {
@@ -43,7 +43,7 @@ namespace EchelonTouchInc.Gister.Api
             }
         }
 
-        public string GetGistById(string gistId, GitHubUserCredentials credentials)
+        public string GetGistById(string gistId, GitHubCredentials credentials)
         {
             using (var stream = new MemoryStream())
             {
@@ -68,7 +68,7 @@ namespace EchelonTouchInc.Gister.Api
 
                 JObject rawGistJsonObj =JObject.Parse(rawGistJson);
 
-                return rawGistJsonObj.files;
+                return rawGistJsonObj.ToString();
 
             }
         }

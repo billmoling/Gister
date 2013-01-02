@@ -16,6 +16,10 @@ using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Editor;
 using Microsoft.VisualStudio.Text;
+using EchelonTouchInc.Gister.Api;
+using EchelonTouchInc.Gister;
+using EchelonTouchInc.Gister.Api.Credentials;
+using WPFAutoCompleteTextbox;
 
 namespace GistTextAdornment
 {
@@ -29,6 +33,28 @@ namespace GistTextAdornment
         {
             InitializeComponent();
             _view = view;
+            InitGistListValue();
+            
+        }
+
+        /// <summary>
+        /// insert the suggestion list for the text box
+        /// </summary>
+        private void InitGistListValue()
+        {
+            //TextBox1.AddItem(new AutoCompleteEntry("Chevy Impala", null));  // null matching string will default with just the name
+            var credentials = GetGitHubCredentials();
+            if (credentials == GitHubCredentials.Anonymous)
+            {
+                //TODO: need to check how to notify user that there cred is not available
+                //NotifyUserThat("Cancelled Gist");
+                return;
+            }
+            List<GistObject> gistList = ProcessGistList.GetUserGistList(credentials);
+            foreach (var item in gistList)
+            {
+                TextBox1.AddItem(new AutoCompleteEntry(item.Description, null));
+            }
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
@@ -39,6 +65,10 @@ namespace GistTextAdornment
                 ITextEdit edit = _view.TextBuffer.CreateEdit();
                 ITextSnapshot snapshot = edit.Snapshot;
                 
+                //TODO: read the textbox value and get the gist content
+                
+                
+                //delete "gist:" and then add the content to editor
                 int position = snapshot.GetText().IndexOf("gist:");
                 edit.Delete(position, 5);
                 edit.Insert(position, "billmo");
@@ -46,5 +76,22 @@ namespace GistTextAdornment
             }));
             
         }
+
+        
+        private static GitHubCredentials GetGitHubCredentials()
+        {
+            var retrievers = new IRetrievesCredentials[]
+                                 {
+                                     new CachesGitHubCredentials(),
+                                     new RetrievesUserEnteredCredentials()
+                                 };
+
+            var firstAppropriate = (from applier in retrievers
+                                    where applier.IsAvailable()
+                                    select applier).First();
+
+            return firstAppropriate.Retrieve();
+        }
+
     }
 }
